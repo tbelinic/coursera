@@ -1,2 +1,4 @@
 # coursera
-exercises for coursera-data scientist
+Exercises for coursera-data scientist
+
+
