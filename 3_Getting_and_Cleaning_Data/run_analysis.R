@@ -12,6 +12,7 @@ activity_labels <- rename(activity_labels, class_label=V1, activity_names=V2)
 
 features <- read.table("./UCI HAR Dataset/features.txt", stringsAsFactors = FALSE)
 features <- rename(features, index=V1, feature_names=V2)
+features <- features[grep("(mean|std)", features$feature_names), ]
 features <- mutate(features, feature_names=gsub("\\(\\)","", features$feature_names))
 
 #Loading train data
