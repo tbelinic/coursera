@@ -48,7 +48,7 @@ all_data$activity <- factor(all_data$activity, levels = activity_labels$class_la
 
 # Creating tidy data set with the average of each variable for each activity and each subject.
 library(reshape2)
-tidy_data <- melt(all_data, id=c("subject","activity"))
-tidy_data <- dcast(data = tidy_data, subject + activity ~ variable, fun.aggregate = mean)
-
-write.table(x=tidy_data, file="tidy_data.txt", quote = FALSE)
+tidy_data <- melt(all_data, id=c("subject","activity"), measure.vars = 3:81)
+tidy_data <- aggregate(value ~ subject + activity + variable, data=tidy_data, FUN = mean)
+tidy_data <- rename(tidy_data, features=variable, average=value)
+write.table(x=tidy_data, file="tidy_data.txt", quote = FALSE, row.name=FALSE)
